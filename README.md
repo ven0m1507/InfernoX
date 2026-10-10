@@ -102,8 +102,8 @@ InfernoX is intended as an academic prototype for demonstrating emergency respon
 
 ## 10. Team Members
 
-- Neerav Bhutola
+- Neerav Bhutowa
 - Niti Kumari
-- Tanishk Negi
+- Tanishek Negi
 - Vansh Agarwal
 
