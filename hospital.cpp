@@ -98,4 +98,5 @@ int main(){
     H.shift_from_ICU_to_General_ward(2);
     H.display();
     return 0;
+    
 }
