@@ -1,5 +1,4 @@
-
-#include "Djikstra.h"
+#include "Dijkstra.h"
 
 #include <iostream>
 #include <queue>
@@ -107,4 +106,51 @@ void Dijkstra::shortestPath(int source, int destination) {
     }
 
     cout << "\nTotal distance: " << dist[destination] << endl;
+}
+
+int Dijkstra::getShortestDistance(int source, int destination) const {
+    int n = static_cast<int>(graph.size());
+
+    if (source < 0 || source >= n ||
+        destination < 0 || destination >= n) {
+        return -1;
+    }
+
+    vector<int> dist(n, INT_MAX);
+
+    priority_queue<
+        pair<int, int>,
+        vector<pair<int, int>>,
+        greater<pair<int, int>>
+    > pq;
+
+    dist[source] = 0;
+    pq.push({0, source});
+
+    while (!pq.empty()) {
+        int currentDistance = pq.top().first;
+        int u = pq.top().second;
+        pq.pop();
+
+        if (currentDistance > dist[u]) {
+            continue;
+        }
+
+        if (u == destination) {
+            return currentDistance;
+        }
+
+        for (const auto& edge : graph[u]) {
+            int v = edge.first;
+            int weight = edge.second;
+
+            if (currentDistance <= INT_MAX - weight &&
+                currentDistance + weight < dist[v]) {
+                dist[v] = currentDistance + weight;
+                pq.push({dist[v], v});
+            }
+        }
+    }
+
+    return -1;
 }
